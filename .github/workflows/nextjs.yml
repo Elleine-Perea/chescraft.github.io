@@ -1,3 +1,4 @@
+# .github/workflows/nextjs.yml
 name: Deploy Next.js site to Pages
 
 on:
@@ -39,13 +40,13 @@ jobs:
             exit 1
           fi
 
-      - name: Setup Node
+      - name: Setup Node (for build)
         uses: actions/setup-node@v6
         with:
           node-version: "20"
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Setup Pages (configure for Next.js)
+        uses: actions/configure-pages@v6
         with:
           static_site_generator: next
 
@@ -65,7 +66,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: .next
 
